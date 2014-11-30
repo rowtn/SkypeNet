@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 public class CommandCleverbot implements IBotCommand {
 
     static ChatterBotSession bot;
+
     static {
         try {
             bot = new ChatterBotFactory().create(ChatterBotType.CLEVERBOT).createSession();
@@ -17,6 +18,7 @@ public class CommandCleverbot implements IBotCommand {
             e.printStackTrace();
         }
     }
+
     @Override
     public String command(String[] args) {
         if (args.length < 1) return "Please enter a message!";
