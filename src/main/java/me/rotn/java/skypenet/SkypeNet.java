@@ -171,6 +171,8 @@ public class SkypeNet {
             String className = resource.substring(0, resource.lastIndexOf(".class")).replaceAll("/", ".");
             try {
                 classes.add(Class.forName(className));
+                debugPrint("Found class: " + className);
+
             } catch (ClassNotFoundException ignore) {
                 ignore.printStackTrace();
             }
@@ -193,7 +195,7 @@ public class SkypeNet {
         return commands;
     }
 
-    private void debugPrint(String toPrint) {
+    private static void debugPrint(String toPrint) {
         if (DEBUG) System.out.println(toPrint);
     }
 }
