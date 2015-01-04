@@ -72,5 +72,4 @@ public class CommandSwear implements IBotCommand {
             return data[new Random().nextInt(data.length)];
         }
     }
-
 }

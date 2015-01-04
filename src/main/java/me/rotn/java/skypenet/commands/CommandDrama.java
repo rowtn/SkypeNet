@@ -159,6 +159,4 @@ public class CommandDrama implements IBotCommand {
     public CommandPriority getPriority() {
         return CommandPriority.LOW;
     }
-
-
 }
