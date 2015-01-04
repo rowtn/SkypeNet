@@ -24,6 +24,9 @@ public class CommandRandom implements IBotCommand {
         } catch (NumberFormatException e) {
             return args[1] + " is not a number!";
         }
+        if (min == max) {
+            return "The numbers cannot be equal.";
+        }
         if (min > max) {
             min ^= max;
             max ^= min;
