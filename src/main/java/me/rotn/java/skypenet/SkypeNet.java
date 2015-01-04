@@ -17,12 +17,14 @@ import java.util.List;
 
 public class SkypeNet {
 
+    private final boolean CHATBOT_TROLL = false;
+    private static final String COMMAND_PREFIX = ">>";
+    private static final boolean DEBUG = false;
+
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
     private Keyboard keyboard;
-    private static final String COMMAND_PREFIX = ">>";
     private Map<String, ChatterBotSession> cleverBots = new HashMap<>();
     private ChatterBotFactory botFactory = new ChatterBotFactory();
-    private final boolean CHATBOT_TROLL = false;
     private static SkypeNet instance;
 
     public static void main(String[] args) throws SkypeException, IllegalAccessException, InstantiationException {
@@ -47,6 +49,9 @@ public class SkypeNet {
             public void chatMessageReceived(ChatMessage chatMessage) {
                 try {
                     handle(chatMessage);
+                    if (DEBUG) {
+                        System.out.printf("[%s] %s", chatMessage.getSender().getDisplayName(), chatMessage.getContent());
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
