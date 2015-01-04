@@ -40,6 +40,9 @@ public class SkypeNet {
             System.exit(1);
         }
         loadCommands();
+        for (IBotCommand cmd : commands.values()) {
+            debugPrint("Registered " + cmd.name());
+        }
         //loadExternalModules();
         System.out.println("Loaded!");
         instance = this;
@@ -150,6 +153,7 @@ public class SkypeNet {
         for (Class<?> clazz : classes) {
             try {
                 registerCommand(clazz);
+                debugPrint(clazz.getCanonicalName());
             } catch (ReflectiveOperationException e) {
                 System.out.println("Could not register command: " + clazz.getCanonicalName());
             }
@@ -189,4 +193,7 @@ public class SkypeNet {
         return commands;
     }
 
+    private void debugPrint(String toPrint) {
+        if (DEBUG) System.out.println(toPrint);
+    }
 }
