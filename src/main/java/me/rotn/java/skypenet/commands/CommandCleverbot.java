@@ -9,9 +9,9 @@ import org.apache.commons.lang.StringUtils;
 
 public class CommandCleverbot implements IBotCommand {
 
-    static ChatterBotSession bot;
+    private ChatterBotSession bot;
 
-    static {
+    public CommandCleverbot() {
         try {
             bot = new ChatterBotFactory().create(ChatterBotType.CLEVERBOT).createSession();
         } catch (Exception e) {
