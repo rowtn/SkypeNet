@@ -39,6 +39,7 @@ public class SkypeNet {
             e.printStackTrace();
             System.exit(1);
         }
+        debugPrint("Loading commands.");
         loadCommands();
         for (IBotCommand cmd : commands.values()) {
             debugPrint("Registered " + cmd.name());
