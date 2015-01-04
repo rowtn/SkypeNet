@@ -19,7 +19,7 @@ public class SkypeNet {
 
     private final boolean CHATBOT_TROLL = false;
     private static final String COMMAND_PREFIX = ">>";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
     private Keyboard keyboard;
@@ -115,6 +115,7 @@ public class SkypeNet {
                 if (commands.containsKey(args[0])) {
                     String response = commands.get(args[0]).command(Arrays.copyOfRange(args, 1, args.length));
                     keyboard.type(response);
+                    if (DEBUG) System.out.println(response);
                 }
             } catch (SkypeException e) {
                 System.out.println("invalid message " + message);
