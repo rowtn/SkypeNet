@@ -8,10 +8,9 @@ import java.util.Arrays;
 
 public class AutoReload extends Thread {
 
-    private String lastHash = getMD5Hash(getJarName());
-
     @Override
     public void run() {
+        String lastHash = getMD5Hash(getJarName());
         while (true) {
             try {
                 Thread.sleep(10000);
