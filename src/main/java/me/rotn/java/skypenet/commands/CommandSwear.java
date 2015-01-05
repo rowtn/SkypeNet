@@ -74,4 +74,9 @@ public class CommandSwear implements IBotCommand {
             return data[new Random().nextInt(data.length)];
         }
     }
+
+    @Override
+    public boolean requirePrefix() {
+        return true;
+    }
 }

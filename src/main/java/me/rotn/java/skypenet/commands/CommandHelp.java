@@ -21,4 +21,9 @@ public class CommandHelp implements IBotCommand {
     public CommandPriority getPriority() {
         return CommandPriority.HIGH;
     }
+
+    @Override
+    public boolean requirePrefix() {
+        return true;
+    }
 }

@@ -18,4 +18,9 @@ public class CommandGit implements IBotCommand {
     public CommandPriority getPriority() {
         return CommandPriority.LOW;
     }
+
+    @Override
+    public boolean requirePrefix() {
+        return true;
+    }
 }

@@ -48,4 +48,9 @@ public class CommandCleverbot implements IBotCommand {
     public CommandPriority getPriority() {
         return CommandPriority.NORMAL;
     }
+
+    @Override
+    public boolean requirePrefix() {
+        return true;
+    }
 }

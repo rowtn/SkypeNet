@@ -149,7 +149,7 @@ public class SkypeNet {
             if (commands.containsKey(command.name())) {
                 if (commands.get(command.name()).getPriority().moreImportantThan(command.getPriority())) return;
             }
-            commands.put(String.format("%s%s", COMMAND_PREFIX, command.name()), command);
+            commands.put(String.format("%s%s", command.requirePrefix() ? COMMAND_PREFIX : "", command.name()), command);
         }
     }
 
