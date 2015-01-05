@@ -4,7 +4,7 @@ import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
 import me.rotn.java.skypenet.CommandPriority;
-import me.rotn.java.skypenet.IBotCommand;
+import me.rotn.java.skypenet.framework.IBotCommand;
 import org.apache.commons.lang.StringUtils;
 
 public class CommandCleverbot implements IBotCommand {

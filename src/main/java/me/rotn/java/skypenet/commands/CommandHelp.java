@@ -1,7 +1,7 @@
 package me.rotn.java.skypenet.commands;
 
 import me.rotn.java.skypenet.CommandPriority;
-import me.rotn.java.skypenet.IBotCommand;
+import me.rotn.java.skypenet.framework.IBotCommand;
 import me.rotn.java.skypenet.SkypeNet;
 import org.apache.commons.lang.StringUtils;
 

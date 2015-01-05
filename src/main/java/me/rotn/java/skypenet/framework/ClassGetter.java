@@ -1,4 +1,6 @@
-package me.rotn.java.skypenet;
+package me.rotn.java.skypenet.framework;
+
+import me.rotn.java.skypenet.SkypeNet;
 
 import java.io.IOException;
 import java.net.URL;

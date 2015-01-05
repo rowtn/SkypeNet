@@ -7,8 +7,9 @@ import com.skype.ChatMessage;
 import com.skype.ChatMessageAdapter;
 import com.skype.Skype;
 import com.skype.SkypeException;
+import me.rotn.java.skypenet.framework.ClassGetter;
+import me.rotn.java.skypenet.framework.IBotCommand;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -21,7 +22,6 @@ public class SkypeNet {
     private static final boolean DEBUG = false;
 
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
-    private Keyboard keyboard;
     private Map<String, ChatterBotSession> cleverBots = new HashMap<>();
     private ChatterBotFactory botFactory = new ChatterBotFactory();
     private static SkypeNet instance;
@@ -31,13 +31,6 @@ public class SkypeNet {
     }
 
     private SkypeNet() throws SkypeException, InstantiationException, IllegalAccessException {
-        try {
-            keyboard = new Keyboard();
-        } catch (AWTException e) {
-            System.out.println("Couldn't create Virtual Keyboard! (Is AWT supported in your JRE?)");
-            e.printStackTrace();
-            System.exit(1);
-        }
         debugPrint("Loading commands.");
         loadCommands();
         for (IBotCommand cmd : commands.values()) {
@@ -47,7 +40,8 @@ public class SkypeNet {
         System.out.println("Loaded!");
         instance = this;
         Skype.setDaemon(false);
-        keyboard.type("/me Hello, World!");
+        new AutoReload().start();
+        Keyboard.type("/me Hello, World!");
         Skype.addChatMessageListener(new ChatMessageAdapter() {
             @Override
             public void chatMessageReceived(ChatMessage chatMessage) {
@@ -118,7 +112,7 @@ public class SkypeNet {
                 String[] args = message.getContent().split(" ");
                 if (commands.containsKey(args[0])) {
                     String response = commands.get(args[0]).command(Arrays.copyOfRange(args, 1, args.length));
-                    keyboard.type(response);
+                    Keyboard.type(response);
                     if (DEBUG) System.out.println(response);
                 }
             } catch (SkypeException e) {
@@ -130,7 +124,7 @@ public class SkypeNet {
             if (!cleverBots.containsKey(message.getSenderId()))
                 cleverBots.put(message.getSenderId(), botFactory.create(ChatterBotType.CLEVERBOT).createSession());
             bot = cleverBots.get(message.getSenderId());
-            keyboard.type(bot.think(
+            Keyboard.type(bot.think(
                     message.
                             getContent()));
         }
@@ -167,9 +161,5 @@ public class SkypeNet {
         if (DEBUG) {
             System.out.println(toPrint);
         }
-    }
-
-    public static Keyboard getKeyboard() {
-        return instance.keyboard;
     }
 }

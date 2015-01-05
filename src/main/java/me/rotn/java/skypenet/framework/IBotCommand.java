@@ -1,4 +1,6 @@
-package me.rotn.java.skypenet;
+package me.rotn.java.skypenet.framework;
+
+import me.rotn.java.skypenet.CommandPriority;
 
 public abstract interface IBotCommand {
 

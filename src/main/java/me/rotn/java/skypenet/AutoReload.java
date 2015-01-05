@@ -19,7 +19,7 @@ public class AutoReload extends Thread {
             }
             String newHash = getMD5Hash(getJarName());
             if (!newHash.equals(lastHash)) {
-                SkypeNet.getKeyboard().type("/me Updated JAR detected. Restarting.");
+                Keyboard.type("/me Updated JAR detected. Restarting.");
                 System.exit(0);
             }
         }
