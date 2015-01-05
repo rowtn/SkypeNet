@@ -111,6 +111,7 @@ public class SkypeNet {
                 String[] args = message.getContent().split(" ");
                 if (commands.containsKey(args[0])) {
                     String response = commands.get(args[0]).command(message, Arrays.copyOfRange(args, 1, args.length));
+                    if (response == null) return;
                     Keyboard.type(response);
                     if (DEBUG) System.out.println(response);
                 }
