@@ -9,6 +9,7 @@ import com.skype.Skype;
 import com.skype.SkypeException;
 import me.rotn.java.skypenet.framework.ClassGetter;
 import me.rotn.java.skypenet.framework.IBotCommand;
+import me.rotn.java.skypenet.framework.vilsol.ModuleManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class SkypeNet {
 
     private final boolean CHATBOT_TROLL = false;
-    private static final String COMMAND_PREFIX = "@";
+    public static final String COMMAND_PREFIX = "@";
     private static final boolean DEBUG = false;
 
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
@@ -32,11 +33,15 @@ public class SkypeNet {
 
     private SkypeNet() throws SkypeException, InstantiationException, IllegalAccessException {
         debugPrint("Loading commands.");
-        loadCommands();
+        /*loadCommands();
         for (IBotCommand cmd : commands.values()) {
             debugPrint("Registered " + cmd.name());
         }
         //loadExternalModules();
+        */
+
+        ModuleManager.loadModules("me.rotn.java.skypenet.modules");
+
         System.out.println("Loaded!");
         instance = this;
         Skype.setDaemon(false);
@@ -45,7 +50,10 @@ public class SkypeNet {
             @Override
             public void chatMessageReceived(ChatMessage chatMessage) {
                 try {
-                    handle(chatMessage);
+                    //handle(chatMessage);
+
+                    ModuleManager.parseText(chatMessage);
+
                     if (DEBUG) {
                         System.out.printf("[%s] %s\n", chatMessage.getSender().getDisplayName(), chatMessage.getContent());
                     }
