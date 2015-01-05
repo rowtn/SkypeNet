@@ -38,8 +38,8 @@ public class ModuleManager {
                             allCommands.put(s, data);
                         }
                     }
+                    SkypeNet.debugPrint("Loaded command: " + command.name());
                 }
-                SkypeNet.debugPrint("Loaded command: " + command.name());
             }
 
         }
