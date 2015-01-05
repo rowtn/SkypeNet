@@ -6,7 +6,7 @@ import me.rotn.java.skypenet.framework.vilsol.Command;
 
 public class Test {
 
-    @Command(name = "echo", command = false)
+    @Command(name = "echo")
     public static void lol(ChatMessage msg, String echo) {
         Keyboard.type(echo);
     }

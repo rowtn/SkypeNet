@@ -37,7 +37,9 @@ public class ModuleManager {
                         }
                     }
                 }
+                SkypeNet.debugPrint("Loaded command: " + command.name());
             }
+
         }
     }
 

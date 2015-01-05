@@ -165,7 +165,7 @@ public class SkypeNet {
         return commands;
     }
 
-    private static void debugPrint(String toPrint) {
+    public static void debugPrint(String toPrint) {
         if (DEBUG) {
             System.out.println(toPrint);
         }
