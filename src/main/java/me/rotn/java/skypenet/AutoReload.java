@@ -3,7 +3,7 @@ package me.rotn.java.skypenet;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -26,10 +26,10 @@ public class AutoReload extends Thread {
         }
     }
 
-    private String getMD5Hash(String file) {
+    private String getMD5Hash(Path file) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(Files.readAllBytes(Paths.get(file)));
+            md.update(Files.readAllBytes(file));
             return Arrays.toString(md.digest());
         } catch (IOException | NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -37,8 +37,8 @@ public class AutoReload extends Thread {
         return null;
     }
 
-    private String getJarName() {
-        return new File(SkypeNet.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getName();
+    private Path getJarName() {
+        return new File(SkypeNet.class.getProtectionDomain().getCodeSource().getLocation().getPath()).toPath();
     }
 
 }
