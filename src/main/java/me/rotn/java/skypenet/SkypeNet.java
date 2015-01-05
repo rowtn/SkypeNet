@@ -110,7 +110,7 @@ public class SkypeNet {
             try {
                 String[] args = message.getContent().split(" ");
                 if (commands.containsKey(args[0])) {
-                    String response = commands.get(args[0]).command(Arrays.copyOfRange(args, 1, args.length));
+                    String response = commands.get(args[0]).command(message, Arrays.copyOfRange(args, 1, args.length));
                     Keyboard.type(response);
                     if (DEBUG) System.out.println(response);
                 }

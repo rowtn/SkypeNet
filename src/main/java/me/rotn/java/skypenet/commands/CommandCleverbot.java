@@ -3,6 +3,7 @@ package me.rotn.java.skypenet.commands;
 import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
 import com.google.code.chatterbotapi.ChatterBotType;
+import com.skype.ChatMessage;
 import me.rotn.java.skypenet.CommandPriority;
 import me.rotn.java.skypenet.framework.IBotCommand;
 import org.apache.commons.lang.StringUtils;
@@ -20,7 +21,7 @@ public class CommandCleverbot implements IBotCommand {
     }
 
     @Override
-    public String command(String[] args) {
+    public String command(ChatMessage chatMessages, String[] args) {
         if (args.length < 1) return "Please enter a message!";
         if (args[0].equalsIgnoreCase("restart")) {
             try {

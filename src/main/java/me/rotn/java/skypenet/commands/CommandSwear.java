@@ -1,5 +1,6 @@
 package me.rotn.java.skypenet.commands;
 
+import com.skype.ChatMessage;
 import me.rotn.java.skypenet.CommandPriority;
 import me.rotn.java.skypenet.framework.IBotCommand;
 
@@ -12,7 +13,7 @@ public class CommandSwear implements IBotCommand {
             {SwearType.gilles, SwearType.object},
             {SwearType.gilles, SwearType.handelend}};
 
-    public String command(String args[]) {
+    public String command(ChatMessage chatMessages, String args[]) {
         SwearType[] combination = combinations[new Random().nextInt(combinations.length)];
         String output = "";
         for (SwearType s : combination) {

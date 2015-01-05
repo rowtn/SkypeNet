@@ -1,5 +1,6 @@
 package me.rotn.java.skypenet.commands;
 
+import com.skype.ChatMessage;
 import me.rotn.java.skypenet.CommandPriority;
 import me.rotn.java.skypenet.framework.IBotCommand;
 
@@ -140,7 +141,7 @@ public class CommandDrama implements IBotCommand {
             "[people] forked [things] to remove [function]"
     };
 
-    public String command(String[] args) {
+    public String command(ChatMessage chatMessages, String[] args) {
         String sentence = sentences[new Random().nextInt(Arrays.asList(sentences).size())];
         Random r = new Random();
         for (Map.Entry<String, String[]> s : data.entrySet()) {
