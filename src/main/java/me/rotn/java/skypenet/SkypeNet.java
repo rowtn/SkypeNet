@@ -40,7 +40,6 @@ public class SkypeNet {
         System.out.println("Loaded!");
         instance = this;
         Skype.setDaemon(false);
-        new AutoReload().start();
         Keyboard.type("/me Hello, World!");
         Skype.addChatMessageListener(new ChatMessageAdapter() {
             @Override
