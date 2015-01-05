@@ -9,11 +9,10 @@ import com.skype.Skype;
 import com.skype.SkypeException;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class SkypeNet {
 
@@ -137,48 +136,15 @@ public class SkypeNet {
     }
 
     private void loadCommands() {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        String path = "me/rotn/java/skypenet/commands";
-        Enumeration<URL> resources;
-        try {
-            resources = classLoader.getResources(path);
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Invalid package name: " + path);
-        }
-        List<Class<?>> classes = new LinkedList<>();
-        while (resources.hasMoreElements()) {
-            File f = new File(resources.nextElement().getFile());
-            classes.addAll(find(f, path));
-        }
-
-        for (Class<?> clazz : classes) {
+        java.util.List<Class<?>> allCommands = ClassGetter.getClassesForPackage(this, "me.rotn/java.skypenet.commands.");
+        for (Class<?> clazz : allCommands) {
             try {
                 registerCommand(clazz);
-                debugPrint(clazz.getCanonicalName());
-            } catch (ReflectiveOperationException e) {
-                System.out.println("Could not register command: " + clazz.getCanonicalName());
+                debugPrint("Registered Command Class " + clazz.getCanonicalName());
+            } catch (IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
             }
         }
-    }
-
-    private static List<Class<?>> find(final File file, final String scannedPackage) {
-        List<Class<?>> classes = new LinkedList<>();
-        String resource = scannedPackage + "." + file.getName();
-        if (file.isDirectory()) {
-            for (File nestedFile : file.listFiles()) {
-                classes.addAll(find(nestedFile, scannedPackage));
-            }
-        } else if (resource.endsWith(".class")) {
-            String className = resource.substring(0, resource.lastIndexOf(".class")).replaceAll("/", ".");
-            try {
-                classes.add(Class.forName(className));
-                debugPrint("Found class: " + className);
-
-            } catch (ClassNotFoundException ignore) {
-                ignore.printStackTrace();
-            }
-        }
-        return classes;
     }
 
     private void registerCommand(Class<?> clazz) throws IllegalAccessException, InstantiationException {
@@ -197,6 +163,8 @@ public class SkypeNet {
     }
 
     private static void debugPrint(String toPrint) {
-        if (DEBUG) System.out.println(toPrint);
+        if (DEBUG) {
+            System.out.println(toPrint);
+        }
     }
 }
