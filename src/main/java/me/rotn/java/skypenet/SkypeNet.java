@@ -17,7 +17,7 @@ import java.util.Map;
 public class SkypeNet {
 
     private final boolean CHATBOT_TROLL = false;
-    private static final String COMMAND_PREFIX = ">>";
+    private static final String COMMAND_PREFIX = "@";
     private static final boolean DEBUG = false;
 
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
