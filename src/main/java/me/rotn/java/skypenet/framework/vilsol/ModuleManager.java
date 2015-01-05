@@ -24,6 +24,7 @@ public class ModuleManager {
         Reflections r = new Reflections(modulePackage);
         Set<Class<? extends Module>> classes = r.getSubTypesOf(Module.class);
         for(Class<? extends Module> c : classes){
+            SkypeNet.debugPrint("Found class: " + c.getCanonicalName());
             for(Method m : c.getMethods()){
                 SkypeNet.debugPrint("Found method " + m.getName());
                 Command command;
