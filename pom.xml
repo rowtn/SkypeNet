@@ -50,6 +50,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
+                    <finalName>skypebot</finalName>
                     <archive>
                         <manifest>
                             <mainClass>me.rotn.java.skypenet.SkypeNet</mainClass>

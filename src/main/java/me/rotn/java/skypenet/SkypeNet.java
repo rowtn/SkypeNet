@@ -18,7 +18,7 @@ public class SkypeNet {
 
     private final boolean CHATBOT_TROLL = false;
     private static final String COMMAND_PREFIX = ">>";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private Map<String, IBotCommand> commands = new LinkedHashMap<>();
     private Keyboard keyboard;
@@ -47,13 +47,14 @@ public class SkypeNet {
         System.out.println("Loaded!");
         instance = this;
         Skype.setDaemon(false);
+        keyboard.type("/me Hello, World!");
         Skype.addChatMessageListener(new ChatMessageAdapter() {
             @Override
             public void chatMessageReceived(ChatMessage chatMessage) {
                 try {
                     handle(chatMessage);
                     if (DEBUG) {
-                        System.out.printf("[%s] %s", chatMessage.getSender().getDisplayName(), chatMessage.getContent());
+                        System.out.printf("[%s] %s\n", chatMessage.getSender().getDisplayName(), chatMessage.getContent());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -166,5 +167,9 @@ public class SkypeNet {
         if (DEBUG) {
             System.out.println(toPrint);
         }
+    }
+
+    public static Keyboard getKeyboard() {
+        return instance.keyboard;
     }
 }

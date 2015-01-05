@@ -12,7 +12,7 @@ public class ClassGetter {
     public static ArrayList<Class<?>> getClassesForPackage(SkypeNet instance, String pkgname) {
         ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
         // String relPath = pkgname.replace('.', '/');
- 
+
         // Get a File object for the package
         CodeSource src = instance.getClass().getProtectionDomain().getCodeSource();
         if (src != null) {
@@ -22,7 +22,7 @@ public class ClassGetter {
         }
         return classes;
     }
- 
+
     private static Class<?> loadClass(String className) {
         try {
             return Class.forName(className);
