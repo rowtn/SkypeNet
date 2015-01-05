@@ -25,6 +25,7 @@ public class ModuleManager {
         Set<Class<? extends Module>> classes = r.getSubTypesOf(Module.class);
         for(Class<? extends Module> c : classes){
             for(Method m : c.getMethods()){
+                SkypeNet.debugPrint("Found method " + m.getName());
                 Command command;
                 command = m.getAnnotation(Command.class);
                 if(command != null){
